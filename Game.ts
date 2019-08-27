@@ -95,7 +95,7 @@ export class Game {
     private CurrentPlayerIndex = 0;
     private Clockwise = true;
     private Taki = false;
-
+    private MaybeWinIndex = -1;
     private Pack: Card[];
     private PlayerCount: number = 4;
     private CurCard: ColorCard;
@@ -111,6 +111,7 @@ export class Game {
         }
 
         this.setPlayers();
+
         this.giveCards();
 
         this.drawHands();
@@ -189,9 +190,20 @@ export class Game {
             }
         }
 
-        if (this.getCurrentPlayer().getHand.length === 0 && this.CurCard.cardType !== "Plus" && this.CurCard.cardType !== "TwoPlus") {
-            alert(`Player ${this.CurrentPlayerIndex} Won!`);
-            location.reload(true);
+        if (this.getCurrentPlayer().getHand.length === 0) {
+            switch (this.CurCard.cardType) {
+                case "TwoPlus": {
+                    this.MaybeWinIndex = this.CurrentPlayerIndex;
+                    break;
+                }
+                case "Plus": {
+                    break;
+                }
+                default: {
+                    this.win(this.CurrentPlayerIndex);
+                }
+            }
+
         }
 
         if (!this.Taki && regular) {
@@ -204,6 +216,11 @@ export class Game {
 
         this.renderStats();
         this.botPlayer();
+    }
+
+    private win(winnerIndex: number) {
+        alert(`Player ${winnerIndex} Won!`);
+        location.reload(true);
     }
 
     private drawHands() {
@@ -286,6 +303,10 @@ export class Game {
             }
         } else {
             this.nextPlayer();
+        }
+
+        if (this.MaybeWinIndex !== -1 && this.Players[this.MaybeWinIndex].getHand.length === 0 && this.PlusTwoPool === 0) {
+            this.win(this.MaybeWinIndex);
         }
 
         this.renderStats();
