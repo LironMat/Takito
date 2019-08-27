@@ -1,0 +1,73 @@
+.player {
+    position: absolute;
+    border: 1vh black solid;
+    display: flex;
+    background: gray;
+}
+
+.horizontal {
+    width: 80%;
+    height: 100px;
+    justify-content: center;
+}
+
+.vertical {
+    width: 100px;
+    height: 80%;
+    flex-direction: column;
+}
+
+#player-0 {
+    bottom: 0;
+}
+
+#player-1 {
+    left: 0;
+}
+
+#player-2 {
+    top: 0;
+}
+
+#player-3 {
+    right: 0;
+}
+
+.card {
+    border: solid 0.5vh;
+    width: 50px;
+    height: 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 1vh;
+    background: white;
+}
+
+.comp-card {
+    background-image: url('back.png');
+    background-repeat: repeat;
+}
+
+
+.current {
+    background-color: aqua;
+}
+
+.vertical>.card {
+    width: 100px;
+    height: 50px;
+}
+
+.multicolor-card {
+    border-color: red orange green blue;
+}
+
+#center-pack {
+    width: 50px;
+    height: 100px;
+}

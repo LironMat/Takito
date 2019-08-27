@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "jsx": "preserve",
+        "sourceMap": true,
+        "outDir": "dist"
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}
