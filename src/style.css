@@ -6,14 +6,14 @@
 }
 
 .horizontal {
-    width: 80%;
-    height: 100px;
+    width: 80vw;
+    height: 10vh;
     justify-content: center;
 }
 
 .vertical {
-    width: 100px;
-    height: 80%;
+    width: 10vh;
+    height: 74vh;
     flex-direction: column;
 }
 
@@ -35,21 +35,21 @@
 
 .card {
     border: solid 0.5vh;
-    width: 50px;
-    height: 100px;
+    width: 5vh;
+    height: 10vh;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
     text-align: center;
-    font-size: 22px;
+    font-size: 2.5vh;
     border-radius: 1vh;
     background: white;
 }
 
 .comp-card {
-    background-image: url('./back.png');
+    background-image: url('back.png');
     background-repeat: repeat;
 }
 
@@ -59,8 +59,8 @@
 }
 
 .vertical>.card {
-    width: 100px;
-    height: 50px;
+    width: 10vh;
+    height: 5vh;
 }
 
 .multicolor-card {
@@ -68,8 +68,8 @@
 }
 
 #center-pack {
-    width: 50px;
-    height: 100px;
+    width: 5vh;
+    height: 10vh;
     align-self: center;
 }
 

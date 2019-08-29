@@ -1,4 +1,5 @@
 export abstract class Card {
+    public abstract getDesc(): string;
 }
 
 export type Color = "Red" | "Orange" | "Green" | "Blue";
@@ -13,6 +14,10 @@ export class ColorCard extends Card {
         this.color = c;
         this.cardType = t;
     }
+
+    public getDesc() {
+        return `${this.color} ${this.cardType}`;
+    }
 }
 
 export class SpecialCard extends Card {
@@ -20,5 +25,9 @@ export class SpecialCard extends Card {
     constructor(t: SpecialCardType) {
         super();
         this.cardType = t;
+    }
+
+    public getDesc() {
+        return this.cardType;
     }
 }

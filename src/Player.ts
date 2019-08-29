@@ -72,9 +72,9 @@ export class Player {
         for (const playerCard of this.Hand) {
             const cardElement = this.IsHuman ? Game.createCardElement(playerCard) : Game.createCompCardElement();
             if (this.IsHuman) {
-                cardElement.onclick = (ev: MouseEvent) => {
+                cardElement.onclick = async (ev: MouseEvent) => {
                     if (this.CurrentGame.isCurrentPlayerHuman()) {
-                        this.playCard(playerCard);
+                        await this.playCard(playerCard);
                     }
                 };
             }
@@ -84,7 +84,7 @@ export class Player {
 
     public async playCard(card: Card) {
         if (this.CurrentGame.canPlaceCard(card)) {
-            this.CurrentGame.playHistory(`Player ${this.Index} played ${JSON.stringify(card)}`);
+            this.CurrentGame.playHistory(`Player ${this.Index} played ${card.getDesc()}`);
             if (card instanceof SpecialCard) {
                 this.CurrentGame.renderCardOnPack(card);
                 this.CurrentGame.takiOff();

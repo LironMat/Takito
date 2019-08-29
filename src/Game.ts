@@ -324,12 +324,12 @@ export class Game {
 
     private botPlayer() {
         if (!this.isCurrentPlayerHuman()) {
-            setTimeout(() => {
+            setTimeout(async () => {
                 if (!this.isCurrentPlayerHuman()) {
                     const currentPlayer = this.getCurrentPlayer();
                     for (const card of currentPlayer.getHand) {
                         if (this.canPlaceCard(card)) {
-                            currentPlayer.playCard(card);
+                            await currentPlayer.playCard(card);
                             return;
                         }
                     }
