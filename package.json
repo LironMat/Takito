@@ -6,11 +6,19 @@
     "private": true,
     "dependencies": {
         "file-loader": "^4.2.0",
-        "typescript": "^3.6.2"
+        "typescript": "^3.6.2",
+        "webpack": "^4.39.3"
     },
     "devDependencies": {
         "css-loader": "^3.2.0",
         "style-loader": "^1.0.0",
-        "ts-loader": "^6.0.4"
+        "ts-loader": "^6.0.4",
+        "webpack-cli": "^3.3.7"
+    },
+    "scripts": {
+        "vscode:prepublish": "webpack --mode production",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch",
+        "test-compile": "tsc -p ./"
     }
 }
