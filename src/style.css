@@ -49,7 +49,7 @@
 }
 
 .comp-card {
-    background-image: url('back.png');
+    background-image: url('./back.png');
     background-repeat: repeat;
 }
 
@@ -70,4 +70,9 @@
 #center-pack {
     width: 50px;
     height: 100px;
+    align-self: center;
+}
+
+* {
+    font-family: sans-serif;
 }

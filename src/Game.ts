@@ -1,5 +1,5 @@
-import { Card, Color, ColorCard, ColorCardType, SpecialCard } from "./Card.js";
-import { Player } from "./Player.js";
+import { Card, Color, ColorCard, ColorCardType, SpecialCard } from "./Card";
+import { Player } from "./Player";
 
 export class Game {
     public static createCompCardElement() {
@@ -16,7 +16,7 @@ export class Game {
         return a;
     }
 
-    public static createCardElement(card: Card, toHand: boolean) {
+    public static createCardElement(card: Card) {
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
         if (card instanceof ColorCard) {
@@ -76,7 +76,7 @@ export class Game {
     }
 
     private static createNumberCardArray(color: Color): ColorCard[] {
-        return [new ColorCard(1, color)].concat(...[...Array(7).keys()].map((v, i) => {
+        return [new ColorCard(1, color)].concat(...[...Array(7).keys()].map((v) => {
             return new ColorCard((v + 3) as ColorCardType, color);
         }));
     }
@@ -99,11 +99,13 @@ export class Game {
     private Pack: Card[];
     private PlayerCount: number = 4;
     private CurCard: ColorCard;
+    private LastPlayElement = document.getElementById("history");
 
     private Players: Player[];
     private CenterPack: HTMLDivElement = document.getElementById("center-pack") as HTMLDivElement;
 
-    constructor() {
+    constructor(numberOfPlayers: number) {
+        this.PlayerCount = numberOfPlayers;
         this.SetPack();
 
         for (let i = 0; i < 10; i++) {
@@ -127,8 +129,14 @@ export class Game {
                 this.skipPlaying();
             }
         };
-
+        this.LastPlayElement.innerHTML = "";
+        this.LastPlayElement.hidden = false;
         this.renderStats();
+    }
+
+    public playHistory(msg: string) {
+        this.LastPlayElement.innerHTML = msg;
+        console.log(msg);
     }
 
     public isCurrentPlayerHuman() {
@@ -163,7 +171,7 @@ export class Game {
 
     public renderCardOnPack(card: Card) {
         this.CenterPack.innerHTML = "";
-        this.CenterPack.appendChild(Game.createCardElement(card, false));
+        this.CenterPack.appendChild(Game.createCardElement(card));
     }
 
     public calcCardPlacement() {

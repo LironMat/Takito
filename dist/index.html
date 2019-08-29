@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Takito</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body style="width: 100%;height:100%;margin:0;background-color: #c19a6b">
     <div style="position: absolute;z-index: 1">
-        <div id="current-player">Current Player: 0</div>
-        <div id="plus-two-pool">2+ Pool: 0</div>
-        <div id="pack-size">Number of Cards Left: 0</div>
-        <div id="direction">Direction: Clockwise</div>
+        <div id="current-player">Current Player:</div>
+        <div id="plus-two-pool">2+ Pool:</div>
+        <div id="pack-size">Number of Cards Left:</div>
+        <div id="direction">Direction:</div>
     </div>
     <div style="width:100%;height:100%; display:flex;align-items:center; justify-content: center;">
         <input id="next-turn-button" type="button" style="position: absolute;bottom: 0;left:0;width:200px;height:50px"
@@ -23,7 +22,10 @@
         <div class="player vertical" id="player-1"></div>
         <div class="player horizontal" id="player-2"></div>
         <div class="player vertical" id="player-3"></div>
-        <div id="center-pack"></div>
+        <div style="display: flex; flex-direction: column">
+            <h1 id="history" hidden="true"></h1>
+            <div id="center-pack"></div>
+        </div>
     </div>
 
     <p id="colorCard" style="display:none">
@@ -35,7 +37,7 @@
         <span style="color: orange">K</span><span style="color: blue">I</span>
     </p>
 
-    <script src="dist/main.js" type="module"></script>
+    <script src="bundle.js"></script>
 </body>
 
 </html>

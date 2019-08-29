@@ -1,5 +1,5 @@
-import { Card, Color, ColorCard, SpecialCard } from "./Card.js";
-import { Game } from "./Game.js";
+import { Card, Color, ColorCard, SpecialCard } from "./Card";
+import { Game } from "./Game";
 
 export class Player {
 
@@ -8,7 +8,7 @@ export class Player {
             setTimeout(() => {
                 const colors: Color[] = ["Red", "Blue", "Green", "Orange"];
                 resolve(Game.shuffle(colors)[0]);
-            }, 500);
+            }, 1000);
         });
     }
 
@@ -55,7 +55,7 @@ export class Player {
     }
 
     public addCardsToHand(cards: Card[]) {
-        console.log(`Player ${this.Index} drawn ${cards.length} cards`);
+        this.CurrentGame.playHistory(`Player ${this.Index} drawn ${cards.length} cards`);
         this.Hand.push(...cards);
     }
 
@@ -70,7 +70,7 @@ export class Player {
     public drawHand() {
         this.HandElement.innerHTML = "";
         for (const playerCard of this.Hand) {
-            const cardElement = this.IsHuman ? Game.createCardElement(playerCard, true) : Game.createCompCardElement();
+            const cardElement = this.IsHuman ? Game.createCardElement(playerCard) : Game.createCompCardElement();
             if (this.IsHuman) {
                 cardElement.onclick = (ev: MouseEvent) => {
                     if (this.CurrentGame.isCurrentPlayerHuman()) {
@@ -84,12 +84,12 @@ export class Player {
 
     public async playCard(card: Card) {
         if (this.CurrentGame.canPlaceCard(card)) {
-            console.log(`Player ${this.Index} played ${JSON.stringify(card)}`);
+            this.CurrentGame.playHistory(`Player ${this.Index} played ${JSON.stringify(card)}`);
             if (card instanceof SpecialCard) {
                 this.CurrentGame.renderCardOnPack(card);
                 this.CurrentGame.takiOff();
                 const color = await (this.IsHuman ? Player.playerSelectColor() : Player.botSelectColor());
-                console.log(`selected ${color}`);
+                this.CurrentGame.playHistory(`Player ${this.Index} selected color ${color}`);
                 this.removeCardFromHand(card);
                 switch (card.cardType) {
                     case "SuperTaki": {
